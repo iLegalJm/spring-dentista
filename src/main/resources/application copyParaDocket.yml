@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: sistemacitas
+  jackson:
+    default-property-inclusion: non-null
+    property-naming-strategy: SNAKE_CASE
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
