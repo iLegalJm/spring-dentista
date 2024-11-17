@@ -11,9 +11,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PacienteResponse {
+public class PersonaResponse {
     private Long id;
-    private PersonaResponse persona;
-    private String createdAt;
-    private int flagEstado;
+    private String nombre;
+    private String apellidos;
+    private String dni;
+    private String telefono;
+    private String email;
+    private String direccion;
 }

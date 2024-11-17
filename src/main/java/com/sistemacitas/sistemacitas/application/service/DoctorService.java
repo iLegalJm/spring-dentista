@@ -35,16 +35,17 @@ public class DoctorService implements DoctorServicePort {
 
     @Override
     public Doctor updateDoctor(Long id, Doctor doctor) {
-        return persistencePort.getDoctor(id).map(saveDoctor -> {
-            saveDoctor.setId(saveDoctor.getId());
-            saveDoctor.setNombre(doctor.getNombre());
-            saveDoctor.setApellidos(doctor.getApellidos());
-            saveDoctor.setDni(doctor.getDni());
-            saveDoctor.setTelefono(doctor.getTelefono());
-            saveDoctor.setEmail(doctor.getEmail());
-            saveDoctor.setDireccion(doctor.getDireccion());
-            return persistencePort.createDoctor(saveDoctor);
-        }).orElseThrow(() -> new DotorNotFoundException("Doctor no encontrado"));
+        // return persistencePort.getDoctor(id).map(saveDoctor -> {
+        // saveDoctor.setId(saveDoctor.getId());
+        // saveDoctor.setNombre(doctor.getNombre());
+        // saveDoctor.setApellidos(doctor.getApellidos());
+        // saveDoctor.setDni(doctor.getDni());
+        // saveDoctor.setTelefono(doctor.getTelefono());
+        // saveDoctor.setEmail(doctor.getEmail());
+        // saveDoctor.setDireccion(doctor.getDireccion());
+        // return persistencePort.createDoctor(saveDoctor);
+        // }).orElseThrow(() -> new DotorNotFoundException("Doctor no encontrado"));
+        return null;
     }
 
     @Override

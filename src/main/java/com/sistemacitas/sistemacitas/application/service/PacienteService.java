@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 
 import com.sistemacitas.sistemacitas.application.ports.input.PacienteServicePort;
 import com.sistemacitas.sistemacitas.application.ports.output.PacientePersistencePort;
+import com.sistemacitas.sistemacitas.application.ports.output.PersonaPersistencePort;
 import com.sistemacitas.sistemacitas.domain.exception.PacienteNotFoundException;
 import com.sistemacitas.sistemacitas.domain.model.Paciente;
+import com.sistemacitas.sistemacitas.domain.model.Persona;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PacienteService implements PacienteServicePort {
     private final PacientePersistencePort persistencePort;
+    private final PersonaPersistencePort personaPersistencePort;
 
     @Override
     public Paciente getPaciente(Long id) {
@@ -29,20 +32,36 @@ public class PacienteService implements PacienteServicePort {
 
     @Override
     public Paciente createPaciente(Paciente paciente) {
+        // --primero debe crease la personaPersistencePort
+        Persona persona = new Persona();
+        persona.setNombre(paciente.getPersona().getNombre());
+        persona.setApellidos(paciente.getPersona().getApellidos());
+        persona.setDni(paciente.getPersona().getDni());
+        persona.setTelefono(paciente.getPersona().getTelefono());
+        persona.setEmail(paciente.getPersona().getEmail());
+        persona.setDireccion(paciente.getPersona().getDireccion());
+        persona = personaPersistencePort.createPersona(persona);
+        paciente.setPersona(persona);
         return persistencePort.createPaciente(paciente);
     }
 
     @Override
     public Paciente updatePaciente(Long id, Paciente paciente) {
-        return persistencePort.getPaciente(id).map(savePaciente -> {
-            savePaciente.setId(savePaciente.getId());
-            savePaciente.setNombre(paciente.getNombre());
-            savePaciente.setApellidos(paciente.getApellidos());
-            savePaciente.setDni(paciente.getDni());
-            savePaciente.setTelefono(paciente.getTelefono());
-            savePaciente.setEmail(paciente.getEmail());
-            savePaciente.setDireccion(paciente.getDireccion());
-            return persistencePort.createPaciente(savePaciente);
+        return persistencePort.getPaciente(id).map(existingPaciente -> {
+            Persona persona = existingPaciente.getPersona();
+            persona.setId(existingPaciente.getPersona().getId());
+            persona.setNombre(paciente.getPersona().getNombre());
+            persona.setApellidos(paciente.getPersona().getApellidos());
+            persona.setDni(paciente.getPersona().getDni());
+            persona.setTelefono(paciente.getPersona().getTelefono());
+            persona.setEmail(paciente.getPersona().getEmail());
+            persona.setDireccion(paciente.getPersona().getDireccion());
+            Persona updatedPersona = personaPersistencePort.createPersona(persona);
+            
+            // Asignar la entidad Persona actualizada al Paciente
+            existingPaciente.setPersona(updatedPersona);
+            return persistencePort.createPaciente(existingPaciente);
+
         }).orElseThrow(() -> new PacienteNotFoundException("Paciente no encontrado"));
     }
 
@@ -52,5 +71,10 @@ public class PacienteService implements PacienteServicePort {
             throw new PacienteNotFoundException("Paciente no encontrado");
         }
         persistencePort.deletePaciente(id);
+    }
+
+    @Override
+    public Persona createPersona(Persona persona) {
+        return personaPersistencePort.createPersona(persona);
     }
 }

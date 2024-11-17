@@ -9,7 +9,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface PacientePersistenceMapper {
-    PacienteEntity toPacienteEntity(Paciente pacienteEntity);
+    PacienteEntity toPacienteEntity(Paciente paciente);
 
     Paciente toPaciente(PacienteEntity pacienteEntity);
 

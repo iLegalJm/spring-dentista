@@ -11,7 +11,9 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Doctor extends Persona {
+public class Doctor {
+    private Long id;
+    private Persona persona;
     private LocalDateTime createdAt;
     private int flagEstado;
     private Especialidad especialidad;

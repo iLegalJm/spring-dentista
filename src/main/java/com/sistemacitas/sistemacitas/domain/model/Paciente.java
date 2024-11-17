@@ -13,7 +13,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Paciente extends Persona {
+public class Paciente {
+    private Long id;
+    private Persona persona;
     private LocalDateTime createdAt;
     private int flagEstado;
 }
