@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 
 import com.sistemacitas.sistemacitas.application.ports.input.DoctorServicePort;
 import com.sistemacitas.sistemacitas.application.ports.output.DoctorPersistencePort;
+import com.sistemacitas.sistemacitas.application.ports.output.PersonaPersistencePort;
 import com.sistemacitas.sistemacitas.domain.exception.DotorNotFoundException;
 import com.sistemacitas.sistemacitas.domain.model.Doctor;
+import com.sistemacitas.sistemacitas.domain.model.Persona;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class DoctorService implements DoctorServicePort {
 
     private final DoctorPersistencePort persistencePort;
+    private final PersonaPersistencePort personaPersistencePort;
 
     @Override
     public Doctor getDoctor(Long id) {
@@ -30,6 +33,17 @@ public class DoctorService implements DoctorServicePort {
 
     @Override
     public Doctor createDoctor(Doctor doctor) {
+        Persona persona = new Persona();
+        persona.setNombre(doctor.getPersona().getNombre());
+        persona.setApellidos(doctor.getPersona().getApellidos());
+        persona.setDni(doctor.getPersona().getDni());
+        persona.setTelefono(doctor.getPersona().getTelefono());
+        persona.setEmail(doctor.getPersona().getEmail());
+        persona.setDireccion(doctor.getPersona().getDireccion());
+        persona = personaPersistencePort.createPersona(persona);
+
+        doctor.setPersona(persona);
+        doctor.setEspecialidad(doctor.getEspecialidad());
         return persistencePort.createDoctor(doctor);
     }
 

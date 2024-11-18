@@ -1,6 +1,7 @@
 package com.sistemacitas.sistemacitas.infrastructure.adapters.input.rest.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 import com.sistemacitas.sistemacitas.domain.model.Dentista;

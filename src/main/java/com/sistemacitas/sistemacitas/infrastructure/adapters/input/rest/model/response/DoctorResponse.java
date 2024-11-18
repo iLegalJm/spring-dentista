@@ -13,11 +13,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class DoctorResponse {
     private Long id;
-    private String nombre;
-    private String apellidos;
-    private String dni;
-    private String telefono;
-    private String email;
-    private String direccion;
+    private PersonaResponse persona;
     private EspecialidadResponse especialidad;
+    private String created_at;
+    private int flagEstado;
 }

@@ -11,7 +11,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -37,7 +36,7 @@ public class PacienteRestAdapter {
     }
 
     @GetMapping("/v1/api/{id}")
-    public PacienteResponse buscar(@RequestParam Long id) {
+    public PacienteResponse buscar(@PathVariable Long id) {
         return restMapper.toPacienteResponse(servicePort.getPaciente(id));
     }
 

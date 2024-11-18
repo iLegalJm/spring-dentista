@@ -14,4 +14,6 @@ import lombok.Setter;
 public class EspecialidadResponse {
     private Long id;
     private String nombre;
+    private String descripcion;
+    private String flag_estado;
 }

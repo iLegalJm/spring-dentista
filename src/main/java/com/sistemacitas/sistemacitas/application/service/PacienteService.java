@@ -32,7 +32,6 @@ public class PacienteService implements PacienteServicePort {
 
     @Override
     public Paciente createPaciente(Paciente paciente) {
-        // --primero debe crease la personaPersistencePort
         Persona persona = new Persona();
         persona.setNombre(paciente.getPersona().getNombre());
         persona.setApellidos(paciente.getPersona().getApellidos());
@@ -71,10 +70,5 @@ public class PacienteService implements PacienteServicePort {
             throw new PacienteNotFoundException("Paciente no encontrado");
         }
         persistencePort.deletePaciente(id);
-    }
-
-    @Override
-    public Persona createPersona(Persona persona) {
-        return personaPersistencePort.createPersona(persona);
     }
 }

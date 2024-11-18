@@ -27,17 +27,17 @@ public class DoctorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private LocalDateTime createdAt;
-    private int flagEstado;
-
+    
     @ManyToOne
-    @JoinColumn(name = "especialidad_id")
+    @JoinColumn(name = "especialidad_id", referencedColumnName = "id")
     private EspecialidadEntity especialidad;
-
+    
     @OneToOne
     @JoinColumn(name = "persona_id", referencedColumnName = "id")
     private PersonaEntity persona;
+    
+    private LocalDateTime createdAt;
+    private int flagEstado;
 
     @PrePersist
     protected void onCreate() {

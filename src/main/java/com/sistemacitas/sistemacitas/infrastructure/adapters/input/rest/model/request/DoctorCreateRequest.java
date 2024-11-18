@@ -34,5 +34,5 @@ public class DoctorCreateRequest {
     private String direccion;
 
     @NotNull(message = "La especialidad no puede estar vacía")
-    private Long especialidadId;
+    private Long especialidad;
 }

@@ -6,15 +6,17 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Builder
 @Getter
-@AllArgsConstructor
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Doctor {
     private Long id;
     private Persona persona;
+    private Especialidad especialidad;
     private LocalDateTime createdAt;
     private int flagEstado;
-    private Especialidad especialidad;
 }
