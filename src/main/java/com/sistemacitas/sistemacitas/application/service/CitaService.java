@@ -29,6 +29,7 @@ public class CitaService implements CitaServicePort {
 
     @Override
     public Cita createCita(Cita cita) {
+        System.out.println(cita.getDoctor());
         return persistencePort.createCita(cita);
     }
 

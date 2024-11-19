@@ -23,11 +23,11 @@ public class CitaEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "doctor_id")
+    @JoinColumn(name = "doctor_id", referencedColumnName = "id")
     private DoctorEntity doctor;
 
     @ManyToOne
-    @JoinColumn(name = "paciente_id")
+    @JoinColumn(name = "paciente_id", referencedColumnName = "id")
     private PacienteEntity paciente;
 
     private String serie;

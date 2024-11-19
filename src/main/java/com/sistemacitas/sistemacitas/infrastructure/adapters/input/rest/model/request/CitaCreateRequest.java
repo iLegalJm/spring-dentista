@@ -19,10 +19,10 @@ public class CitaCreateRequest {
     private String fecha;
 
     @NotNull(message = "El paciente no puede estar vacío")
-    private Long pacienteId;
+    private Long paciente;
 
-    @NotNull(message = "El dentista no puede estar vacío")
-    private Long dentistaId;
+    @NotNull(message = "El doctor no puede estar vacío")
+    private Long doctor;
 
     @NotEmpty(message = "El motivo no puede estar vacío")
     private String motivo;
