@@ -34,15 +34,15 @@ public class CitaEntity {
     private int numero;
     private LocalDateTime fecha;
     private String motivo;
-    private LocalDateTime createdAt;
-    private int flagEstado;
+    private LocalDateTime created_at;
+    private int flag_estado;
 
     @PrePersist
     protected void onCreate() {
         this.serie = generateSerie(); // Método para generar la serie
         this.numero = 1; // Método para generar el número
-        this.createdAt = LocalDateTime.now();
-        this.flagEstado = 1;
+        this.created_at = LocalDateTime.now();
+        this.flag_estado = 1;
     }
 
     private String generateSerie() {

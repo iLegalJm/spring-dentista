@@ -20,4 +20,8 @@ public class EspecialidadCreateRequest {
     @NotBlank(message = "El nombre no puede estar en blanco")
     @NotNull(message = "El nombre no puede ser nulo")
     private String nombre;
+    
+    private String descripcion;
+    private int flag_estado;
+
 }

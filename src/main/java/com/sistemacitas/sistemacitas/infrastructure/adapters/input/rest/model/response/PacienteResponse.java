@@ -14,6 +14,6 @@ import lombok.Setter;
 public class PacienteResponse {
     private Long id;
     private PersonaResponse persona;
-    private String createdAt;
-    private int flagEstado;
+    private String created_at;
+    private int flag_estado;
 }

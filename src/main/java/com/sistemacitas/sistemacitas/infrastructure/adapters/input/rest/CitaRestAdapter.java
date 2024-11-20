@@ -2,8 +2,10 @@ package com.sistemacitas.sistemacitas.infrastructure.adapters.input.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +25,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/cita")
+@CrossOrigin(origins = "http://localhost:5173") 
 public class CitaRestAdapter {
     private final CitaServicePort servicePort;
     private final CitaRestMapper restMapper;
@@ -33,7 +36,7 @@ public class CitaRestAdapter {
     }
 
     @GetMapping("/v1/api/{id}")
-    public CitaResponse buscar(Long id) {
+    public CitaResponse buscar(@PathVariable Long id) {
         return restMapper.toCitaResponse(servicePort.getCita(id));
     }
 
@@ -41,6 +44,17 @@ public class CitaRestAdapter {
     public ResponseEntity<CitaResponse> guardar(@Valid @RequestBody CitaCreateRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(restMapper.toCitaResponse(servicePort.createCita(restMapper.toCita(request))));
+    }
+
+    @PostMapping("/v2/api")
+    public ResponseEntity<CitaResponse> guardarPorDni(@Valid @RequestBody CitaCreateRequest request) {
+        if (request.getDni() != null && !request.getDni().isEmpty()) {
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(restMapper.toCitaResponse(servicePort.createCitaByDni(request.getDni(), restMapper.toCita(request))));
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(null);    
+        }
     }
 
     @PutMapping("/v1/api/{id}")

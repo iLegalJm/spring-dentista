@@ -7,8 +7,11 @@ import org.springframework.stereotype.Component;
 
 import com.sistemacitas.sistemacitas.application.ports.output.PacientePersistencePort;
 import com.sistemacitas.sistemacitas.domain.model.Paciente;
+import com.sistemacitas.sistemacitas.domain.model.Persona;
 import com.sistemacitas.sistemacitas.infrastructure.adapters.output.persistence.mapper.PacientePersistenceMapper;
+import com.sistemacitas.sistemacitas.infrastructure.adapters.output.persistence.mapper.PersonaPersistenceMapper;
 import com.sistemacitas.sistemacitas.infrastructure.adapters.output.persistence.repository.PacienteRepository;
+import com.sistemacitas.sistemacitas.infrastructure.adapters.output.persistence.repository.PersonaRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,6 +20,10 @@ import lombok.RequiredArgsConstructor;
 public class PacientePersistenceAdapter implements PacientePersistencePort {
 
     private final PacienteRepository pacienteRepository;
+
+    private final PersonaRepository personaRepository;
+
+    private final PersonaPersistenceMapper personaPersistenceMapper;
 
     private final PacientePersistenceMapper persistenceMapper;
 
@@ -38,6 +45,13 @@ public class PacientePersistenceAdapter implements PacientePersistencePort {
     @Override
     public void deletePaciente(Long id) {
         pacienteRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Paciente> getPacienteByDni(String dni) {
+        Optional<Persona> persona = personaRepository.findByDni(dni).map(personaPersistenceMapper::toPersona);
+
+        return persona.flatMap(p -> pacienteRepository.findByPersonaId(p.getId()).map(persistenceMapper::toPaciente));
     }
 
 }

@@ -20,10 +20,10 @@ public class EspecialidadEntity {
 
     private String nombre;
     private String descripcion;
-    private int flagEstado;
+    private int flag_estado;
 
     @PrePersist
     protected void onCreate() {
-        this.flagEstado = 1;
+        this.flag_estado = 1;
     }
 }

@@ -22,6 +22,6 @@ public class Cita {
     private int numero;
     private LocalDateTime fecha;
     private String motivo;
-    private LocalDateTime createdAt;
-    private int flagEstado;
+    private LocalDateTime created_at;
+    private int flag_estado;
 }

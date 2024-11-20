@@ -31,12 +31,12 @@ public class PacienteEntity {
     @JoinColumn(name = "persona_id", referencedColumnName = "id")
     private PersonaEntity persona;
 
-    private LocalDateTime createdAt;
-    private int flagEstado;
+    private LocalDateTime created_at;
+    private int flag_estado;
 
     @PrePersist
     protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-        this.flagEstado = 1;
+        this.created_at = LocalDateTime.now();
+        this.flag_estado = 1;
     }
 }

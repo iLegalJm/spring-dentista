@@ -24,15 +24,8 @@ public interface DoctorRestMapper {
     @Mapping(target = "especialidad", source = "especialidad", qualifiedByName = "mapEspecialidad")
     Doctor toDoctor(DoctorCreateRequest request);
 
-    @Mapping(target = "persona.nombre", source = "persona.nombre")
-    @Mapping(target = "persona.apellidos", source = "persona.apellidos")
-    @Mapping(target = "persona.dni", source = "persona.dni")
-    @Mapping(target = "persona.telefono", source = "persona.telefono")
-    @Mapping(target = "persona.email", source = "persona.email")
-    @Mapping(target = "persona.direccion", source = "persona.direccion")
-    @Mapping(target = "especialidad.id", source = "especialidad.id")
-    @Mapping(target = "especialidad.nombre", source = "especialidad.nombre")
-    @Mapping(target = "especialidad.descripcion", source = "especialidad.descripcion")
+    @Mapping(source = "persona", target = "persona")
+    @Mapping(source = "especialidad", target = "especialidad")
     DoctorResponse toDoctorResponse(Doctor doctor);
 
     List<DoctorResponse> toDoctorResponseList(List<Doctor> doctorList);

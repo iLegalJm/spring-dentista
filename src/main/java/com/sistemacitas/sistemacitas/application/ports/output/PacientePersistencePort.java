@@ -8,8 +8,10 @@ import java.util.List;
 public interface PacientePersistencePort {
     public Optional<Paciente> getPaciente(Long id);
 
-    public List<Paciente> getPacientes();
+    public Optional<Paciente> getPacienteByDni(String dni);
 
+    public List<Paciente> getPacientes();
+    
     public Paciente createPaciente(Paciente paciente);
 
     public void deletePaciente(Long id);

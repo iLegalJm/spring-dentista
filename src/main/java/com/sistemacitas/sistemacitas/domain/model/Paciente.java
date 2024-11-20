@@ -16,6 +16,6 @@ import lombok.Setter;
 public class Paciente {
     private Long id;
     private Persona persona;
-    private LocalDateTime createdAt;
-    private int flagEstado;
+    private LocalDateTime created_at;
+    private int flag_estado;
 }

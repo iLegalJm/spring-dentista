@@ -11,6 +11,8 @@ public interface CitaServicePort {
 
     public Cita createCita(Cita cita);
 
+    public Cita createCitaByDni(String dni, Cita cita);
+
     public Cita updateCita(Long id, Cita cita);
 
     public void deleteCita(Long id);

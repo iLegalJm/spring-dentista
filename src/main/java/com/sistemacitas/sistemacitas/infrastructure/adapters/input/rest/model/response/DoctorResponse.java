@@ -16,5 +16,5 @@ public class DoctorResponse {
     private PersonaResponse persona;
     private EspecialidadResponse especialidad;
     private String created_at;
-    private int flagEstado;
+    private int flag_estado;
 }

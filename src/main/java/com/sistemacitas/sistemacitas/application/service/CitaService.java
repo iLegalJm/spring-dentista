@@ -6,8 +6,11 @@ import org.springframework.stereotype.Service;
 
 import com.sistemacitas.sistemacitas.application.ports.input.CitaServicePort;
 import com.sistemacitas.sistemacitas.application.ports.output.CitaPersistencePort;
+import com.sistemacitas.sistemacitas.application.ports.output.PacientePersistencePort;
 import com.sistemacitas.sistemacitas.domain.exception.CitaNotFoundException;
+import com.sistemacitas.sistemacitas.domain.exception.PacienteNotFoundException;
 import com.sistemacitas.sistemacitas.domain.model.Cita;
+import com.sistemacitas.sistemacitas.domain.model.Paciente;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class CitaService implements CitaServicePort {
 
     private final CitaPersistencePort persistencePort;
+    private final PacientePersistencePort pacientePersistencePort;
 
     @Override
     public Cita getCita(Long id) {
@@ -29,7 +33,6 @@ public class CitaService implements CitaServicePort {
 
     @Override
     public Cita createCita(Cita cita) {
-        System.out.println(cita.getDoctor());
         return persistencePort.createCita(cita);
     }
 
@@ -50,6 +53,14 @@ public class CitaService implements CitaServicePort {
             throw new CitaNotFoundException("Cita no encontrada");
         }
         persistencePort.deleteCita(id);
+    }
+
+    @Override
+    public Cita createCitaByDni(String dni, Cita cita) {
+        Paciente paciente = pacientePersistencePort.getPacienteByDni(dni)
+                .orElseThrow(() -> new PacienteNotFoundException("Paciente no encontrado con DNI: " + dni));
+        cita.setPaciente(paciente);
+        return persistencePort.createCita(cita);
     }
 
 }

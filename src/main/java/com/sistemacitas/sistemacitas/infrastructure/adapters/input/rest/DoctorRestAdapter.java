@@ -2,6 +2,7 @@ package com.sistemacitas.sistemacitas.infrastructure.adapters.input.rest;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/doctor")
+@CrossOrigin(origins = "http://localhost:5173")
 public class DoctorRestAdapter {
     private final DoctorServicePort servicePort;
     private final DoctorRestMapper restMapper;
@@ -33,7 +35,6 @@ public class DoctorRestAdapter {
 
     @GetMapping("/v1/api/{id}")
     public DoctorResponse buscar(@PathVariable Long id) {
-        System.out.println(restMapper.toDoctorResponse(servicePort.getDoctor(id)));
         return restMapper.toDoctorResponse(servicePort.getDoctor(id));
     }
 

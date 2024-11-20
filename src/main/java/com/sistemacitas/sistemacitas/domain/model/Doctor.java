@@ -17,6 +17,6 @@ public class Doctor {
     private Long id;
     private Persona persona;
     private Especialidad especialidad;
-    private LocalDateTime createdAt;
-    private int flagEstado;
+    private LocalDateTime created_at;
+    private int flag_estado;
 }
