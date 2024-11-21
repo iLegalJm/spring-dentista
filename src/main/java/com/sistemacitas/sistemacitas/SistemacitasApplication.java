@@ -7,8 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.sistemacitas.sistemacitas.infrastructure.adapters.output.persistence.entity.DentistaEntity;
-import com.sistemacitas.sistemacitas.infrastructure.adapters.output.persistence.repository.DentistaRepository;
+import com.sistemacitas.sistemacitas.infrastructure.adapters.output.persistence.entity.PersonaEntity;
+import com.sistemacitas.sistemacitas.infrastructure.adapters.output.persistence.repository.PersonaRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 @SpringBootApplication
 public class SistemacitasApplication implements CommandLineRunner {
 
-	private final DentistaRepository repository;
+	private final PersonaRepository personaRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SistemacitasApplication.class, args);
@@ -24,12 +24,9 @@ public class SistemacitasApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		List<DentistaEntity> entities = Arrays.asList(
-				new DentistaEntity(null, "Juan", "Perez", "12345678", "901901901", "jose@gmail.com", "sda",
-						"cirujano"),
-						new DentistaEntity(null, "Juansss", "Perezsssa", "12345672", "901901901", "jose@gmail.com", "sda",
-						"cirujano"));
-		repository.saveAll(entities);
+		List<PersonaEntity> personas = Arrays.asList(
+				new PersonaEntity(null, "admin", "admin", "00000000", "999999999", "admin@gmail.com", "-"));
+		personaRepository.saveAll(personas);
 	}
 
 }
