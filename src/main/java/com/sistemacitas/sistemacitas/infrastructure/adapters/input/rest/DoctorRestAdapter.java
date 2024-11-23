@@ -49,7 +49,7 @@ public class DoctorRestAdapter {
     }
 
     @DeleteMapping("/v1/api/{id}")
-    public void eliminar(Long id) {
+    public void eliminar(@PathVariable Long id) {
         servicePort.deleteDoctor(id);
     }
 
