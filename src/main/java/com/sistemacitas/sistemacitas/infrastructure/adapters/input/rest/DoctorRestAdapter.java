@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/doctor")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 public class DoctorRestAdapter {
     private final DoctorServicePort servicePort;
     private final DoctorRestMapper restMapper;

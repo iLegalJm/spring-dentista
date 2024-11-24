@@ -1,5 +1,7 @@
 package com.sistemacitas.sistemacitas.infrastructure.adapters.input.rest.mapper;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -16,6 +18,8 @@ public interface UsuarioRestMapper {
     Usuario toUsuario(UsuarioRequest usuarioRequest);
 
     UsuarioResponse toUsuarioResponse(Usuario usuario);
+
+    List<UsuarioResponse> toUsuarioResponseList(List<Usuario> usuarioList);
 
     @Named("mapPersona")
     default Persona mapPersona(Long personaId) {

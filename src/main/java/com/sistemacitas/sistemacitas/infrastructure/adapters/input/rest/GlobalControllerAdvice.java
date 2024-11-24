@@ -2,9 +2,12 @@ package com.sistemacitas.sistemacitas.infrastructure.adapters.input.rest;
 
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -55,6 +58,11 @@ public class GlobalControllerAdvice {
                 .detalles(Collections.singletonList(ex.getMessage()))
                 .timestamp(LocalDateTime.now())
                 .build();
+    }
+
+    @RequestMapping(value = "/**", method = RequestMethod.OPTIONS)
+    public ResponseEntity<Void> handleOptions() {
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.sistemacitas.sistemacitas.application.service;
 
 import java.util.Collections;
+import java.util.List;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -52,5 +53,10 @@ class UsuarioService implements UsuarioServicePort, UserDetailsService {
         Usuario usuario = obtenerUsuarioPorUsername(username);
         return new User(usuario.getUsername(), usuario.getPassword(),
                 Collections.singletonList(new SimpleGrantedAuthority(usuario.getRole())));
+    }
+
+    @Override
+    public List<Usuario> obtenerUsuarios() {
+        return usuarioPersistencePort.getUsuarios();
     }
 }

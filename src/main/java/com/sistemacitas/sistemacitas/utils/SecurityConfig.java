@@ -40,7 +40,7 @@ public class SecurityConfig {
                         "/paciente/v1/api/{id}");
 
         private static final List<String> PROTECTED_ROUTES = List.of(
-                        "/usuario/v1/api");
+                        "/usuario/v1/api/register");
 
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

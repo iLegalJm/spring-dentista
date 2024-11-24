@@ -1,5 +1,6 @@
 package com.sistemacitas.sistemacitas.infrastructure.adapters.output.persistence;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Component;
@@ -25,6 +26,11 @@ public class UsuarioPersistenceAdapter implements UsuarioPersistencePort {
     @Override
     public Usuario createUsuario(Usuario usuario) {
         return persistenceMapper.toUsuario(usuarioRepository.save(persistenceMapper.toUsuarioEntity(usuario)));
+    }
+
+    @Override
+    public List<Usuario> getUsuarios() {
+        return persistenceMapper.toUsuarioList(usuarioRepository.findAll());
     }
 
 }

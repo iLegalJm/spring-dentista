@@ -25,7 +25,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/cita")
-@CrossOrigin(origins = "http://localhost:5173") 
+@CrossOrigin(origins = "*")
 public class CitaRestAdapter {
     private final CitaServicePort servicePort;
     private final CitaRestMapper restMapper;
@@ -64,7 +64,7 @@ public class CitaRestAdapter {
     }
 
     @DeleteMapping("/v1/api/{id}")
-    public ResponseEntity<Void> eliminar(Long id) {
+    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         servicePort.deleteCita(id);
         return ResponseEntity.noContent().build();
     }
